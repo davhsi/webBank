@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAV Bank - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">DAV Bank</h1>
+        </header>
+        <main>
+            <div class="dashboard-container">
+                <h2>Welcome, {{ username }}</h2>
+                <p>Balance: Rs{{ balance }}</p>
+                <form action="{{ url_for('withdraw') }}" method="POST">
+                    <div class="form-group">
+                        <input type="number" name="amount" placeholder="Enter amount to withdraw" required>
+                    </div>
+                    <button type="submit">Withdraw</button>
+                </form>
+                <form action="{{ url_for('deposit') }}" method="POST">
+                    <div class="form-group">
+                        <input type="number" name="amount" placeholder="Enter amount to deposit" required>
+                    </div>
+                    <button type="submit">Deposit</button>
+                </form>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                <h3>Transaction History</h3>
+                <ul>
+                    {% for transaction in transactions[username] %}
+                    <li>{{ transaction }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
