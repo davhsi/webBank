@@ -12,8 +12,8 @@ users = {
 }
 
 transactions = {
-    "dav": [],
-    "user2": [],
+    "test": [],
+    "test1": [],
 }
 
 @app.route('/')
